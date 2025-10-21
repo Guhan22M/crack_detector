@@ -1,0 +1,112 @@
+/* ===== Futuristic Dark Theme (Blue Glow) ===== */
+:root {
+  --bg-color: #0a0f1c;         /* main background */
+  --card-color: #111827;       /* dark card */
+  --text-color: #e5e7eb;       /* primary text */
+  --text-muted: #9ca3af;       /* muted text */
+  --accent: #00bfff;           /* neon blue */
+  --accent-glow: #1e90ff;      /* glowing blue */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 15px var(--shadow-color);
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--accent) !important;
+  letter-spacing: 1px;
+}
+
+.navbar a {
+  color: var(--text-color) !important;
+  margin: 0 12px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--accent) !important;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ===== Section Titles ===== */
+h1, h2, h3 {
+  color: var(--accent);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ===== Containers ===== */
+.container, .auth-container, .history-container {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 30px;
+  margin: 50px auto;
+  box-shadow: 0 8px 30px var(--shadow-color);
+  max-width: 950px;
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== Buttons ===== */
+button, .btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.6);
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.8);
+}
+
+/* ===== Links ===== */
+a {
+  color: var(--accent);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-shadow: 0 0 8px var(--accent-glow);
+  text-decoration: none;
+}
+
+/* ===== Auth Container Special ===== */
+.auth-container {
+  max-width: 450px;
+  margin: 100px auto;
+  padding: 45px 35px;
+  border-radius: 18px;
+}

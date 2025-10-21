@@ -1,0 +1,104 @@
+/* ===== Navbar Container ===== */
+.navbar {
+    background: rgba(15, 20, 35, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    padding: 14px 28px;
+    transition: all 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  /* ===== Brand / Logo ===== */
+  .navbar-brand {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #00bfff !important;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-brand:hover {
+    color: #1e90ff !important;
+    text-shadow: 0 0 12px rgba(30, 144, 255, 0.7);
+  }
+  
+  /* ===== Links ===== */
+  .navbar a {
+    text-decoration: none;
+    color: #000000 !important;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 14px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .navbar a:hover {
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+  }
+  
+  .navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #00bfff, #1e90ff);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+  
+  .navbar a:hover::after {
+    width: 100%;
+  }
+  
+  /* ===== Greeting Text ===== */
+  .navbar .fw-semibold {
+    font-size: 15px;
+    color: #000000;
+    margin-right: 12px;
+  }
+  
+  /* ===== Logout Button ===== */
+  .navbar .btn-outline-danger {
+    color: #ff6b6b;
+    border: 1.5px solid #ff6b6b;
+    padding: 6px 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: transparent;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+  }
+  
+  .navbar .btn-outline-danger:hover {
+    background: #ff6b6b;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.6);
+  }
+  
+  /* ===== Responsive Adjustments ===== */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    
+    .navbar a {
+      display: block;
+      margin: 10px 0;
+    }
+  
+    .navbar .fw-semibold {
+      display: block;
+      margin-top: 8px;
+    }
+  }
+  
