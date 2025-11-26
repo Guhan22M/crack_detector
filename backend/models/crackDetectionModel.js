@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const crackDetectionSchema = new mongoose.Schema({
   imageUrl: {
     type: String,
@@ -23,6 +22,12 @@ const crackDetectionSchema = new mongoose.Schema({
   },
   solution: {
     type: String,
+  },
+  prediction:{
+    type: String,
+  },
+  confidence:{
+    type: Number,
   },
   createdAt: {
     type: Date,

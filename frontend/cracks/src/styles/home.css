@@ -1,114 +1,244 @@
-/* ===== Crack Upload Page Styles ===== */
+/* ===== Home Navbar — Unified & Accessible ===== */
+.navbar {
+  background: linear-gradient(180deg, rgba(15,20,35,0.9), rgba(8,12,20,0.95));
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 40px rgba(1,6,15,0.6);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-/* 📦 Main container */
+/* brand */
+.navbar-brand {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: var(--accent) !important;
+}
+
+/* links */
+.navbar a {
+  text-decoration: none;
+  color: var(--text-muted) !important;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: all .18s ease;
+  position: relative;
+}
+.navbar a:hover {
+  color: var(--accent);
+  box-shadow: 0 8px 24px rgba(30,144,255,0.06);
+}
+
+/* underline grow */
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 10%;
+  width: 0%;
+  height: 2px;
+  background: var(--accent-gradient);
+  transition: width .24s ease;
+  border-radius: 2px;
+}
+.navbar a:hover::after { width: 80%; left: 10%; }
+
+/* greeting */
+.navbar .fw-semibold { font-size: 14px; color: var(--text-muted); margin-right: 12px; }
+
+/* logout */
+.navbar .btn-outline-danger {
+  color: #ff6b6b;
+  border: 1.5px solid rgba(255,107,107,0.14);
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: all .16s ease;
+}
+.navbar .btn-outline-danger:hover {
+  background: rgba(255,107,107,0.12);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(255,107,107,0.08);
+}
+
+/* Mobile toggle button */
+.navbar .btn-outline-primary {
+  display: none; /* hide on desktop */
+}
+@media (max-width: 768px) {
+  .navbar .btn-outline-primary {
+    display: inline-block; /* show on mobile */
+  }
+
+
+
+  .navbar {
+    flex-direction: row;          /* row instead of column */
+    justify-content: space-between; /* space between logo and button */
+    align-items: center;
+    padding: 12px 16px;
+  }
+
+  /* Links container stack vertically */
+  .navbar .ms-auto {
+    position: absolute;
+    top: 60px;  /* adjust below navbar */
+    right: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(15,20,35,0.95), rgba(8,12,20,0.95));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 12px 16px;
+    border-radius: 0 0 12px 12px;
+    z-index: 1050;
+  }
+}
+
+
+/* responsive */
+@media (max-width: 768px){
+  .navbar { flex-direction: column; gap:8px; align-items:stretch; padding: 12px; }
+  .navbar a { display:block; margin:6px 0; text-align:center; }
+}
+/* ===== Crack Upload Card — polished ===== */
 .crack-upload-container {
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-    animation: fadeIn 0.5s ease-in-out;
-    max-width: 650px;
-    margin: 30px auto;
-  }
-  
-  /* 🏷️ Title */
-  .crack-upload-container h2 {
-    text-align: center;
-    font-weight: 600;
-    color: #38bdf8;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-  }
-  
-  /* 📂 File input */
-  .crack-upload-container input[type="file"] {
-    background: #0f172a;
-    color: #38bdf8;
-    border: 2px dashed #38bdf8;
-    padding: 10px;
-    border-radius: 8px;
-    width: 100%;
-    transition: 0.3s ease;
-  }
-  
-  .crack-upload-container input[type="file"]:hover {
-    border-color: #22d3ee;
-    background: rgba(34, 211, 238, 0.05);
-  }
-  
-  /* 📸 Camera button */
-  .crack-upload-container label.btn {
-    display: block;
-    text-align: center;
-    font-weight: 500;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 10px;
-  }
-  
-  /* 📝 Textarea */
-  .crack-upload-container textarea {
-    background: #0f172a;
-    border: 1px solid #334155;
-    color: #e5e7eb;
-    border-radius: 8px;
-    transition: 0.3s ease;
-    resize: none;
-  }
-  
-  .crack-upload-container textarea:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
-  }
-  
-  /* 🖼️ Preview */
-  .crack-upload-container img {
-    border: 2px solid #38bdf8;
-    border-radius: 10px;
-    margin-top: 12px;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.15);
-    transition: transform 0.3s ease;
-    width: 100%;
-    max-height: 320px;
-    object-fit: contain;
-  }
-  
-  .crack-upload-container img:hover {
-    transform: scale(1.02);
-  }
-  
-  /* 🚀 Submit button */
-  .crack-upload-container .btn-success {
-    width: 100%;
-    background: linear-gradient(90deg, #38bdf8, #22d3ee);
-    border: none;
-    font-weight: 600;
-    color: #0f172a;
-    padding: 12px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .crack-upload-container .btn-success:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
-  }
-  
-  /* 📢 Message */
-  .crack-upload-container .alert-info {
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid #38bdf8;
-    color: #22d3ee;
-    font-weight: 500;
-    text-align: center;
-    border-radius: 8px;
-    padding: 10px;
-    margin-top: 15px;
-  }
-  
-  /* 🎬 Fade-in Animation */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(8,14,24,0.4));
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+  max-width: 680px;
+  margin: 28px auto;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.crack-upload-container h2 {
+  text-align:center;
+  font-weight:700;
+  color: var(--accent);
+  margin-bottom: 14px;
+  text-shadow: 0 0 8px rgba(30,144,255,0.06);
+}
+
+/* file input: custom look */
+.crack-upload-container .file-wrap {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.crack-upload-container input[type="file"] {
+  display:block;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px dashed rgba(30,144,255,0.14);
+  padding: 12px;
+  border-radius: 10px;
+  width:100%;
+  cursor:pointer;
+  transition: border-color .12s ease, transform .12s ease;
+}
+
+.crack-upload-container input[type="file"]:hover {
+  border-color: rgba(34,211,238,0.3);
+  transform: translateY(-2px);
+}
+
+/* camera button */
+.crack-upload-container label.btn {
+  display:inline-block;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor:pointer;
+  transition: transform .12s ease;
+}
+.crack-upload-container label.btn:hover { transform: translateY(-3px); }
+
+/* textarea */
+.crack-upload-container textarea {
+  width:100%;
+  min-height: 110px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(15,23,42,0.4));
+  color: var(--text-color);
+}
+
+/* preview */
+.crack-upload-container img {
+  border-radius: 10px;
+  margin-top: 12px;
+  width:100%;
+  max-height: 320px;
+  object-fit: contain;
+  box-shadow: 0 8px 30px rgba(30,144,255,0.06);
+  border: 1px solid rgba(30,144,255,0.06);
+}
+
+/* submit */
+.crack-upload-container .btn-success {
+  width:100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  border:none;
+  background-image: linear-gradient(90deg, #38bdf8, #22d3ee);
+  color: #071124;
+  transition: transform .12s ease, box-shadow .12s;
+}
+.crack-upload-container .btn-success:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(34,211,238,0.08);
+}
+
+/* alert */
+.crack-upload-container .alert-info {
+  margin-top: 14px;
+  background: rgba(56,189,248,0.06);
+  border: 1px solid rgba(56,189,248,0.12);
+  color: #bfefff;
+  border-radius: 8px;
+  padding: 10px;
+  text-align:center;
+}
+/* subtle shimmer for important badges */
+.badge-accent {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  color: var(--accent);
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(30,144,255,0.06);
+}
+
+/* small animation for success */
+@keyframes popIn {
+  from { transform: scale(.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.pop-in { animation: popIn .28s cubic-bezier(.2,.9,.2,1); }
+
+/* small divider */
+.hr-soft {
+  height:1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  margin: 16px 0;
+}
+
+

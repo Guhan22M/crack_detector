@@ -100,6 +100,8 @@ const History = () => {
       ["Width", item.crackDetails?.width || "N/A"],
       ["Severity", item.crackDetails?.severity || "N/A"],
       ["Solutions", item.solution || "N/A"],
+      ["Prediction", item.prediction || "N/A"],
+      ["Confidence", item.confidence || "N/A"],
     ];
   
     autoTable(doc, {
@@ -126,10 +128,10 @@ const History = () => {
                 style={{ height: "200px", objectFit: "cover" }}
               />
               <Card.Body>
-                <Card.Title>Severity: {item.crackDetails.severity}</Card.Title>
+                <Card.Title>Prediction: {item.prediction}</Card.Title>
                 <Card.Text>
-                  <strong>Length:</strong> {item.crackDetails.length} <br />
-                  <strong>Width:</strong> {item.crackDetails.width}
+                  <strong>Confidence: {(item.confidence*100).toFixed(2)} %</strong> <br />
+                  <strong>Severity: {item.crackDetails.severity} </strong>
                 </Card.Text>
                 <Button
                   variant="primary"
@@ -166,8 +168,10 @@ const History = () => {
               className="img-fluid mb-3"
               style={{ maxHeight: "300px", objectFit: "contain" }}
             />
-            <p><strong>Length:</strong> {selected.crackDetails.length}</p>
-            <p><strong>Width:</strong> {selected.crackDetails.width}</p>
+            <p><strong>Prediction:</strong> {selected.prediction}</p>
+            <p><strong>Confidence:</strong> {(selected.confidence*100).toFixed(2)}<strong> %</strong></p>
+            <p><strong>Length:</strong> {selected.crackDetails.length}<strong> mm</strong></p>
+            <p><strong>Width:</strong> {selected.crackDetails.width}<strong> mm</strong></p>
             <p><strong>Severity:</strong> {selected.crackDetails.severity}</p>
             <p><strong>Solutions:</strong> {selected.solution}</p>
           </Modal.Body>

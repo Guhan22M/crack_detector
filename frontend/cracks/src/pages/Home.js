@@ -58,17 +58,43 @@ const CrackUploadPage = () => {
         }),
       });
 
+      const respBody = await res.json().catch(() => null);
+
       if (!res.ok) {
-        throw new Error("Failed to send data to backend");
+        // prefer server-provided message
+        const serverMessage = respBody?.message || respBody?.error || `Server returned ${res.status}`;
+        throw new Error(serverMessage);
       }
 
-      const data = await res.json();
+      const data = respBody;
+
+      console.log("Backend response data:", data);
+
+      const crackDetails = data.crackDetails ?? {
+        length: data.length ?? null,
+        width: data.width ?? null,
+        severity: data.severity ?? null,
+      };
+      const imageUrlFromResponse = data.imageUrl ?? data.image??null;
+      
+      let confidenceRaw = data.confidence??null;
+      let confidenceDisplay =  null;
+      if(confidenceRaw!==null){
+        const num = parseFloat(confidenceRaw);
+        if(!Number.isNaN(num)){
+          confidenceDisplay = (num>1?num:num*100).toFixed(1);
+        }
+
+      }
+      
       setAnalysisResult({
-        length: data.crackDetails.length,
-        width: data.crackDetails.width,
-        severity: data.crackDetails.severity,
-        solution: data.solution,
-        imageUrl: data.imageUrl,
+        length: crackDetails.length,
+        width: crackDetails.width,
+        severity: crackDetails.severity,
+        solution: data.solution ?? data.solutions ?? null,
+        prediction: data.prediction?? null,
+        confidence: confidenceDisplay,
+        imageUrl: imageUrlFromResponse,
       });
 
       setMessage("✅ Crack uploaded and analyzed successfully!");
@@ -120,7 +146,7 @@ const CrackUploadPage = () => {
           </div>
         )}
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label className="form-label">Description</label>
           <textarea
             className="form-control"
@@ -129,7 +155,7 @@ const CrackUploadPage = () => {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Describe the crack..."
           ></textarea>
-        </div>
+        </div> */}
 
         <button
           type="submit"
@@ -159,10 +185,13 @@ const CrackUploadPage = () => {
               className="img-fluid mb-3" 
               style={{ maxHeight: "300px", objectFit: "contain" }}
             />
-            <p><strong>Length:</strong> {analysisResult.length}</p>
-            <p><strong>Width:</strong> {analysisResult.width}</p>
+            <p><strong>Prediction:</strong> {analysisResult.prediction }</p>
+            <p><strong>Confidence:</strong> {analysisResult.confidence ?? "N/A"}{analysisResult.confidence?"%":""}</p>
+            <p><strong>Length:</strong> {analysisResult.length} <strong>mm</strong></p>
+            <p><strong>Width:</strong> {analysisResult.width} <strong>mm</strong></p>
             <p><strong>Severity:</strong> {analysisResult.severity}</p>
             <p><strong>Solutions:</strong> {analysisResult.solution}</p>
+
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
