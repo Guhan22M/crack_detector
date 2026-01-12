@@ -65,7 +65,7 @@ const analyzeAndSaveCrack = asyncHandler(async (req, res) => {
   try {
     // Send to EC2 with timeout and accept JSON
     const ec2Response = await axios.post(
-      'https://crack-project-1.onrender.com/predict',
+      'https://crack-project-2.onrender.com/predict',
       {image_url : imageUrl}, 
       {
         headers: { 'Content-Type': 'application/json' },

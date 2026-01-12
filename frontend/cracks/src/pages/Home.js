@@ -187,7 +187,7 @@ const CrackUploadPage = () => {
             />
             <p><strong>Prediction:</strong> {analysisResult.prediction }</p>
             <p><strong>Confidence:</strong> {analysisResult.confidence ?? "N/A"}{analysisResult.confidence?"%":""}</p>
-            <p><strong>Length:</strong> {analysisResult.length} <strong>mm</strong></p>
+            <p><strong>Length:</strong> {analysisResult.length} <strong>cm</strong></p>
             <p><strong>Width:</strong> {analysisResult.width} <strong>mm</strong></p>
             <p><strong>Severity:</strong> {analysisResult.severity}</p>
             <p><strong>Solutions:</strong> {analysisResult.solution}</p>
