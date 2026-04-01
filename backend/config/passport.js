@@ -13,7 +13,7 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         // Find user by email
-        const email = profile.emails[0].value;
+        const email = profile.emails[0].value;  
         let user = await User.findOne({ email });
 
         // If user does not exist, create it

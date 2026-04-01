@@ -46,7 +46,7 @@ const CrackUploadPage = () => {
       const imageUrl = await uploadToCloudinary(file);
 
       // Send to backend
-      const res = await fetch("http://localhost:5000/api/cracks/analyse", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/cracks/analyse`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
